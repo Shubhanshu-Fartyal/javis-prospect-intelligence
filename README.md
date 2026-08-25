@@ -105,6 +105,14 @@ Sample row from `output/prospect_intelligence.csv`:
 |---|---|---|---|
 | CloudNest Technologies | 100 | High | Matches target industry, country, employee range and decision-maker criteria. |
 
+## Screenshots
+
+**Pipeline run:**
+<img width="723" height="646" alt="Screenshot 2026-08-25 124542" src="https://github.com/user-attachments/assets/18f48518-19a6-4941-ba27-f7dfadb54089" />
+
+**Final output CSV:**
+<img width="1410" height="395" alt="Screenshot 2026-08-25 124631" src="https://github.com/user-attachments/assets/b886707f-3be9-4d7e-b911-4ccc75b50da1" />
+
 ## Limitations
 
 - Dataset is synthetic — fictional companies, not scraped or real.
