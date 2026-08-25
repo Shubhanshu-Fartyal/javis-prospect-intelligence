@@ -12,10 +12,6 @@ there is no ML/black-box scoring here on purpose.
 
 import pandas as pd
 
-# ============================================================
-# ICP CONFIGURATION — edit this section to redefine the ICP.
-# Nothing else in this file should need to change.
-# ============================================================
 ICP_CONFIG = {
     "target_industries": ["saas", "software", "technology"],
     "target_country": "india",
