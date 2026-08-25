@@ -1,26 +1,9 @@
-"""
-data_cleaning.py
------------------
-Loads the raw companies.csv, cleans/standardizes text fields,
-removes duplicates, flags records with missing required fields,
-and returns a clean DataFrame plus a data-quality summary dict.
-
-This module has ONE job: turn messy input into a trustworthy
-DataFrame. It does not score or qualify anything — that happens
-in icp_scoring.py.
-"""
-
 import pandas as pd
 
-
-# Fields we consider "required" for a record to be usable downstream.
-# If any of these are missing, the record is flagged (not silently dropped),
-# so we can report exactly how many records were unusable and why.
 REQUIRED_FIELDS = ["company_name", "industry", "country", "decision_maker_title"]
-
+# If any of these are missing, the record is flagged (not silently dropped)
 
 def load_data(csv_path: str) -> pd.DataFrame:
-    """Load the raw CSV. Raises a clear error if the file is missing."""
     try:
         df = pd.read_csv(csv_path)
     except FileNotFoundError:
@@ -34,13 +17,6 @@ def load_data(csv_path: str) -> pd.DataFrame:
 
 
 def _strip_and_normalize_text(df: pd.DataFrame) -> pd.DataFrame:
-    """Strip whitespace from every text column, and title-case a few
-    fields where inconsistent capitalization is a known problem
-    (industry, country, city). We deliberately do NOT title-case
-    company_name or decision_maker, since real names/brands often
-    have intentional casing (e.g. 'CloudNest', 'BLUEWAVE ANALYTICS'
-    should become 'Bluewave Analytics' — acceptable here since this
-    is a prototype, not a brand-safe production system)."""
     text_cols = df.select_dtypes(include="object").columns
     for col in text_cols:
         df[col] = df[col].astype(str).str.strip()
